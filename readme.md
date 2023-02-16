@@ -2,22 +2,67 @@
 ### CLJ-JS
 ![image info](./clj-js.png)
 
-Javascript Sets Functional Programming, Basic Clojure data structure   
+Javascript Sets Functional Programming with Basic Clojure data structure.      
+Clojure Core Libarary but in JS Land
 
-#### Background 
-#### Solving Problem 
+
+#### Yet another Problem to Solve 
+- Struggle Finding A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
+- You want to Solving your problem in clojure way by using clojure core data structue?  
+
+
 #### Usage 
+install or clone this repository 
 ```sh
 npm install clj-js
 ```
-use 
-```js
-
+use in your code  
+```js  
 var {map, filter, thread, juxt, assocIn, updateIn} = require('clj-js');
+var _ = require('clj-js');
+// _.memoize 
+```
+use individually  
+```js  
+var {conj, take, keep} = require('cljs-js/src/array');
+var {assoc, update, zipmap} = require('cljs-js/src/object');
+var {comp, constantly, thread} = require('cljs-js/src/function');
+var {isIncludes, isArray, isIdentical} = require('cljs-js/src/check');
+var {max, mod, rem, add, incr, decr} = require('cljs-js/src/math');
+var {join, reMatches, capitalize} = require('cljs-js/src/string');
+```
+for detailed functions arguments and usage you can take a look to `cljs.info` or take a look into repository source code   
+
+```js 
+conj([1, 2, 3], 4); // [1, 2, 3, 4]
+cons(1, [2, 3, 4]); // [1, 2, 3, 4]
+first([1, 2, 3]); // 1
+peek([1, 2, 3]); // 3
+zipmap(['a', 'b', 'c'], [1, 2, 3]); // => {a: 1, b: 2, c: 3}
+get({ a: 1, b: 2 }, "a"); // 1
+keys({ a: 1, b: 2 }); // ['a', 'b']
+vals({ a: 1, b: 2 }); // [1, 2]
+mergeWith((a, b) => a + b, { a: 1, b: 2 }, { b: 3, c: 4 }, { c: 5, d: 6 });
+selectKeys({ a: 1, b: 2, c: 3 }, ["a", "c"]); // { a: 1, c: 3 }
+
+var player = { name: "aziz", "foot": "R"}
+var playerUpdate = assoc(player, "foot", "L");
+var playerNation= assoc(playerUpdate, "country", "ID")
+var player = dissoc(playerNation, "country");
+var player = {
+  player: {
+    name: "aziz",
+    address: {
+      city: "Jakarta",
+      state: "JKT"
+    }
+  }
+};
+var playerUpdate = assocIn(player, ["player", "address", "country"], "Indonesia");
 
 ```
 #### Help Improve 
-create issues, and Pull Request to improve or add current implementation 
+create issues, and Pull Request to improve, add or enhance implementation   
 
 #### Setup  development with node 
 
@@ -29,44 +74,202 @@ sudo docker attach clj-js && cd /work && node
 
 **Plann Supported API**
 
-```txt 
-:Maps
-assoc assoc_in dissoc merge merge_with select_keys update_in
-key val
-contains? get_in find keys vals get
+```js
+// Objects
+{
+  get,
+  keys,
+  vals,
+  getIn,
+  mergeWith,
+  renameKeys,
+  selectKeys,
+  update,
+  updateIn,
+  assocIn,
+  assoc,
+  dissoc,
+  zipmap
+}
 
-:vectors
-vector vec pop replace conj rseq mapv filterv reduce-kv peek
-nth 
+// Array or Coll, or Seq
+{
+  conj,
+  cons, 
+  first,
+  nth,
+  peek,
+  rest,
+  pop,
+  disj,
+  ffirst,
+  find,
+  map,
+  filter,
+  reduce,
+  concat,
+  mapcat,
+  flatten,
+  distinct,
+  remove,
+  takeNth,
+  take,
+  second,
+  last,
+  next,
+  nfirst,
+  nnext,
+  fnext,
+  takeLast,
+  takeWhile,
+  drop,
+  dropLast,
+  dropFirst,
+  nthrest,
+  sort,
+  sortBy,
+  mapIndexed,
+  reverse,
+  interleave,
+  interpose,
+  compare,
+  groupBy,
+  partition,
+  partitionAll,
+  partitionBy,
+  splitAt,
+  splitWith,
+  shuffle,
+  randNth,
+  whenFirst,
+  vec,
+  subvec,
+  repeat,
+  range,
+  keep,
+  keepIndexed,
+  frequencies,
+  count,
+  union,
+  difference,
+  intersection  
+}
 
-:list
-first nth peek conj cons rest pop 
+// Function, Composition, Thread
+{
+  apply,
+  comp,
+  some,
+  constantly,
+  identity,
+  fnil,
+  memoize,
+  everyPred,
+  complement,
+  partial,
+  juxt,
+  someFn,
+  thread,
+  threadLast,
+  threadAs,
+  condThread,
+  condThreadLast,
+  someThread,
+  someThreadLast
+}
 
-:coll 
-map map-indexed mapcat for replace keep repeat range 
+// Math
+{
+  rand,
+  randInt,
+  add,
+  subtract,
+  multiply,
+  divide,
+  quot,
+  mod,
+  rem,
+  incr,
+  decr,
+  max,
+  min,
+  toInt,
+  toIntSafe
+}
 
-:strings
-re-pattern re-find re-match replace
-lower-case upper-case capitalize triml trimr char string? blank? includes?
+// String
+{
+  subs,
+  splitLines,
+  replace,
+  replaceFirst,
+  join,
+  escape,
+  rePattern,
+  reMatches,
+  capitalize,
+  lowerCase,
+  upperCase,
+  trim,
+  trimNewline,
+  trimL,
+  trimR,
+  char
+}
 
-:atoms 
-swap reset add-watch atom
+// Check, validation
+{
+  contains,
+  empty,
+  notEmpty,
+  isZero,
+  isPos,
+  isNeg,
+  isEven,
+  isOdd,
+  isNumber,
+  isInt,
+  isTrue,
+  isFalse,
+  isInstanceOf,
+  isNil,
+  isSome,
+  isFn,
+  isIncludes,
+  isBlank,
+  isArray,
+  isObject,
+  isString,
+  isIdentical,
+  isColl,
+  isSubset,
+  isSuperset,
+  isDistinct,
+  isEmptyArray,
+  isEmptySet,
+  isEveryEven,
+  isNotEveryEven,
+  isNotAnyEven,
+  isDeepEqual,
+  eq,
+  eqv,
+  neq,
+  gt,
+  lt,
+  lte,
+  gte
+}
 
-:basic
-map map-indexed reduce for doseq
-dotimes while
-true? not= eq identical?
-if-some
-if if-not
-when when-not
-when-let
-cond condp 
-
-:functions
-comp apply threadf threadl condl condp
-somel somep
-fn? constantly partial juxt fnil memoize
+// State
 ```
+
+#### Awesome Clojure in JS 
+- [js.Spec](https://github.com/prayerslayer/js.spec)
+
+
+#### Notes
+- this is not re-implementation of clojurescript or cljs  
+- under developments, my changes order of arguments, but safely under usage, as long you have the same version
 
 #### TODO
 - Make all arguments arity check, check the length input arguments

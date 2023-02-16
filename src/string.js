@@ -110,7 +110,6 @@ function char(n) {
 
 
 module.exports = {
-  split,
   subs,
   splitLines,
   replace,
