@@ -1,3 +1,4 @@
+(notes: under development)
 ### CLJ-JS
 
 Javascript Sets Functional Programming, Basic Clojure data structure   
@@ -9,9 +10,9 @@ Javascript Sets Functional Programming, Basic Clojure data structure
 #### Setup  development with node 
 
 ```sh
-docker run --rm -dit --name clj-js --network=host -v .:/work node:alpine /bin/sh
+sudo docker run --rm -dit --name clj-js --network=host -v $(pwd):/work node:alpine /bin/sh
 ```
-docker attach clj-js && cd /work && node
+sudo docker attach clj-js && cd /work && node
 
 
 **Plann Supported API**
