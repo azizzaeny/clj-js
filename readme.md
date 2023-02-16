@@ -1,11 +1,11 @@
 # CLJ-JS - Clojure Core Libarary but in JS Land  
 <img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
-[![npm version](https://badge.fury.io/js/clj-js.svg)](https://badge.fury.io/js/clj-js)
+[npm version](https://badge.fury.io/js/clj-js.svg)](https://badge.fury.io/js/clj-js)
 
 Javascript Sets Functional Programming with Basic Clojure data structure.   
 
 ### Problem 
-Struggle to find A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
+Struggle to find A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? 
 You want to solve your problem in clojure way by using clojure core data structue?  
 
 
