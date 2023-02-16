@@ -6,7 +6,15 @@ Javascript Sets Functional Programming, Basic Clojure data structure
 #### Background 
 #### Solving Problem 
 #### Usage 
+```sh
+npm install clj-js
+```
+use 
+```js
 
+var {map, filter, thread, juxt, assocIn, updateIn} = require('clj-js');
+
+```
 #### Setup  development with node 
 
 ```sh
@@ -56,4 +64,6 @@ somel somep
 fn? constantly partial juxt fnil memoize
 ```
 
+#### TODO
+- Make all arguments arity check, check the length input arguments
 
