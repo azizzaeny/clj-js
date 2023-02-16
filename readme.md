@@ -1,5 +1,5 @@
 # CLJ-JS 
-### Clojure Core Libarary but in JS Land  
+## Clojure Core Libarary but in JS Land  
 <img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
 
 Javascript Sets Functional Programming with Basic Clojure data structure.   
@@ -263,6 +263,17 @@ create issues, and Pull Request to improve, add or enhance implementation
 }
 
 // State
+{
+  atom,
+  deref,
+  swap,
+  reset,
+  compareAndSet,
+  addWatch,
+  removeWatch,
+  setValidator,
+  getValidator
+}
 ```
 
 ### Setup development with node 
