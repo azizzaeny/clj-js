@@ -1,18 +1,18 @@
-(notes: under development)
-### CLJ-JS
+## CLJ-JS
 ![image info](./clj-js.png)
 
 Javascript Sets Functional Programming with Basic Clojure data structure.      
-Clojure Core Libarary but in JS Land
+Clojure Core Libarary but in JS Land  
 
+clj-js Version: **v1.2.0**  
 
-#### Yet another Problem to Solve 
+### Yet another Problem to Solve 
 - Struggle Finding A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
 - You want to Solving your problem in clojure way by using clojure core data structue?  
 
 
-#### Usage 
-install or clone this repository 
+### Usage 
+install or clone this repository   
 ```sh
 npm install clj-js
 ```
@@ -61,17 +61,16 @@ var player = {
 var playerUpdate = assocIn(player, ["player", "address", "country"], "Indonesia");
 
 ```
-#### Help Improve 
+### Help Improve 
 create issues, and Pull Request to improve, add or enhance implementation   
 
-#### Setup  development with node 
+### Setup development with node 
 
 ```sh
 sudo docker run --rm -dit --name clj-js --network=host -v $(pwd):/work node:alpine /bin/sh
-```
 sudo docker attach clj-js && cd /work && node
-
-
+```
+### Status API
 **Plann Supported API**
 
 ```js
@@ -263,7 +262,7 @@ sudo docker attach clj-js && cd /work && node
 // State
 ```
 
-#### Awesome Clojure in JS 
+#### Awesome Clojure in JS  
 - [js.Spec](https://github.com/prayerslayer/js.spec)
 
 
