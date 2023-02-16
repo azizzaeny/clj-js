@@ -1,5 +1,6 @@
 # CLJ-JS 
-*https://img.shields.io/bundlephobia/minzip/clj-js?style=for-the-badge*   
+**Clojure Core Library but in JS Land**   
+
 <img src="https://badge.fury.io/js/clj-js.svg" alt="npm version" height="20" style="display:inline-block;">
 <img src="https://img.shields.io/badge/clj-js-green?style=for-the-badge&logo=appveyor" alt="clj-js-join" height="20" style="display:inline-block;">
 <img src="https://img.shields.io/bundlephobia/minzip/clj-js?style=for-the-badge" alt="clj-js-join" height="20" style="display:inline-block;">
