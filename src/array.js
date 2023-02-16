@@ -496,6 +496,135 @@ const whenFirst = (pred, coll, fn) => {
     }
   }
 };
+function vec(coll) {
+  if (!coll) {
+    return [];
+  }
+  if (Array.isArray(coll)) {
+    return coll;
+  }
+  if (typeof coll === 'string') {
+    return coll.split('');
+  }
+  if (typeof coll[Symbol.iterator] === 'function') {
+    return Array.from(coll);
+  }
+  return Object.values(coll);
+}
+
+/*
+ vec([1, 2, 3]); // => [1, 2, 3]
+vec("abc"); // => ["a", "b", "c"]
+vec(new Set(['a', 'b', 'c'])); // => ['a', 'b', 'c']
+vec(new Map([['a', 1], ['b', 2]])); // => [['a', 1], ['b', 2]]
+vec(new Array(3).fill().map((_, i) => i)); // => [0, 1, 2]
+*/
+
+function subvec(coll, start, end) {
+  if (!end) {
+    end = coll.length;
+  }
+  if (start < 0 || end < 0) {
+    throw new Error('start and end must be non-negative');
+  }
+  return coll.slice(start, end);
+}
+
+/*
+ subvec([0, 1, 2, 3, 4], 2); // => [2, 3, 4]
+ subvec([0, 1, 2, 3, 4], 2, 4); // => [2, 3]
+*/
+
+// repeat implementation
+const repeat = (n, value) => {
+  const result = new Array(n);
+  for (let i = 0; i < n; i++) {
+    result[i] = value;
+  }
+  return result;
+};
+/*
+ const arr = repeat(5, 'foo');
+ console.log(arr); // ["foo", "foo", "foo", "foo", "foo"]
+*/
+
+// range implementation
+const range = (start, end, step = 1) => {
+  if (arguments.length === 1) {
+    end = start;
+    start = 0;
+  }
+  const result = [];
+  for (let i = start; i < end; i += step) {
+    result.push(i);
+  }
+  return result;
+};
+
+/*
+ const arr = range(2, 8, 2);
+ console.log(arr); // [2, 4, 6]
+*/
+
+function keep(pred, coll) {
+  return coll.reduce((acc, curr) => {
+    const result = pred(curr);
+    if (result !== null && result !== undefined) {
+      acc.push(result);
+    }
+    return acc;
+  }, []);
+}
+
+
+function keepIndexed(pred, coll) {
+  return coll.reduce((acc, curr, idx) => {
+    const result = pred(idx, curr);
+    if (result !== null && result !== undefined) {
+      acc.push(result);
+    }
+    return acc;
+  }, []);
+}
+
+/*
+const coll = [1, 2, 3, 4, 5, 6];
+const isOdd = n => (n % 2 === 1 ? n : null);
+const squared = n => n * n;
+
+const result1 = keep(isOdd, coll); // [1, 3, 5]
+const result2 = keep(squared, result1); // [1, 9, 25]
+
+const result3 = keepIndexed((idx, n) => (idx % 2 === 0 ? n : null), coll); // [1, 3, 5]
+const result4 = keepIndexed(squared, result3); // [1, 9, 25]
+
+*/
+
+function frequencies(coll) {
+  const freqMap = new Map();
+  for (const el of coll) {
+    freqMap.set(el, (freqMap.get(el) || 0) + 1);
+  }
+  return freqMap;
+}
+/*
+ (frequencies ["apple" "banana" "apple" "cherry"]) ; returns {"apple" 2, "banana" 1, "cherry" 1}
+*/
+function count(coll) {
+  return coll.length;
+}
+
+function union(set1, set2) {
+  return new Set([...set1, ...set2]);
+}
+
+function difference(set1, set2) {
+  return new Set([...set1].filter(x => !set2.has(x)));
+}
+
+function intersection(set1, set2) {
+  return new Set([...set1].filter(x => set2.has(x)));
+}
 
 module.exports ={  
   conj,
@@ -545,5 +674,16 @@ module.exports ={
   splitWith,
   shuffle,
   randNth,
-  whenFirst  
+  whenFirst,
+  vec,
+  subvec,
+  repeat,
+  range,
+  keep,
+  keepIndexed,
+  frequencies,
+  count,
+  union,
+  difference,
+  intersection  
 }

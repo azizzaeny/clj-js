@@ -176,21 +176,6 @@ var result = mergeWith((a, b) => a + b, { a: 1, b: 2 }, { b: 3, c: 4 }, { c: 5, 
 result
 */
 
-function contains(coll, key){
-  if (coll instanceof Map || coll instanceof Set) {
-    return coll.has(key);
-  } else if (Array.isArray(coll)) {
-    return coll.includes(key);
-  } else {
-    return Object.prototype.hasOwnProperty.call(coll, key);
-  }
-};
-
-/*
-contains({ a: 1, b: 2 }, 'a'); // true
-contains(new Set([1, 2, 3]), 4); // false
-*/
-
 function getIn(coll, keys){
   return keys.reduce((acc, key) => {
     if (acc && typeof acc === 'object' && key in acc) {
@@ -225,12 +210,22 @@ vals({ a: 1, b: 2 }); // [1, 2]
 
 // TODO Improved version by checking the arguments length for better arity and curried
 
+function zipmap(keys, vals) {
+  return keys.reduce((result, key, i) => {
+    result[key] = vals[i];
+    return result;
+  }, {});
+}
+
+/*
+  zipmap(['a', 'b', 'c'], [1, 2, 3]); // => {a: 1, b: 2, c: 3}
+ */
+
 module.exports = {
   get,
   keys,
   vals,
   getIn,
-  contains,
   mergeWith,
   renameKeys,
   selectKeys,
@@ -238,5 +233,6 @@ module.exports = {
   updateIn,
   assocIn,
   assoc,
-  dissoc
+  dissoc,
+  zipmap
 };

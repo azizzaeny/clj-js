@@ -151,7 +151,43 @@ function someThread(val, ...forms) {
   return val;
 }
 
+function someThreadLast(input, ...forms) {
+  return forms.reduce((acc, form) => {
+    if (acc === null || acc === undefined) {
+      return null;
+    }
+    if (typeof form === "function") {
+      return form(acc);
+    }
+    if (Array.isArray(acc)) {
+      return acc.some(item => {
+        return typeof item[form] === "function" ? item[form]() : false;
+      })
+        ? acc
+        : null;
+    }
+    return form in acc ? acc[form] : null;
+  }, input);
+}
+
 module.exports = {
-  apply, comp, some, constantly, identity, fnil, memoize, everyPred, complement, partial, juxt, someFn,
-  thread, threadLast, threadAs, condThread, condThreadLast, someThread,
+  apply,
+  comp,
+  some,
+  constantly,
+  identity,
+  fnil,
+  memoize,
+  everyPred,
+  complement,
+  partial,
+  juxt,
+  someFn,
+  thread,
+  threadLast,
+  threadAs,
+  condThread,
+  condThreadLast,
+  someThread,
+  someThreadLast
 }
