@@ -1,5 +1,6 @@
 (notes: under development)
 ### CLJ-JS
+![image info](./clj-js.png)
 
 Javascript Sets Functional Programming, Basic Clojure data structure   
 
