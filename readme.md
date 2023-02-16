@@ -15,6 +15,9 @@ use
 var {map, filter, thread, juxt, assocIn, updateIn} = require('clj-js');
 
 ```
+#### Help Improve 
+create issues, and Pull Request to improve or add current implementation 
+
 #### Setup  development with node 
 
 ```sh
