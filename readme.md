@@ -1,6 +1,20 @@
-Javascript Sets Functional Programming, Basic Clojure data structure
+### CLJ-JS
 
-*support
+Javascript Sets Functional Programming, Basic Clojure data structure   
+
+#### Background 
+#### Solving Problem 
+#### Usage 
+
+#### Setup  development with node 
+
+```sh
+docker run --rm -dit --name clj-js --network=host -v .:/work node:alpine /bin/sh
+```
+docker attach clj-js && cd /work && node
+
+
+**Plann Supported API**
 
 ```txt 
 :Maps
@@ -41,12 +55,4 @@ somel somep
 fn? constantly partial juxt fnil memoize
 ```
 
-#### env nodejs 
-
-```txt
-
-docker run --rm -dit --name clj-js --network=host -v .:/work node:alpine /bin/sh
-
-```
-docker attach clj-js && cd /work && node
 
