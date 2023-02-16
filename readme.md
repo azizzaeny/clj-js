@@ -1,6 +1,6 @@
 # CLJ-JS - Clojure Core Libarary but in JS Land  
 <img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
-[npm version](https://badge.fury.io/js/clj-js.svg)](https://badge.fury.io/js/clj-js)
+![npm version](https://badge.fury.io/js/clj-js.svg)](https://badge.fury.io/js/clj-js)
 
 Javascript Sets Functional Programming with Basic Clojure data structure.   
 
