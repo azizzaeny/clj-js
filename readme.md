@@ -1,5 +1,7 @@
-# CLJ-JS 
-## Clojure Core Libarary but in JS Land  
+# CLJ-JS  -- Clojure Core Libarary but in JS Land  
+<a href="https://badge.fury.io/js/clj-js"><img src="https://badge.fury.io/js/clj-js.svg" alt="npm version" height="18"></a>  
+<img src="https://img.shields.io/badge/clj-js-green?style=for-the-badge&logo=appveyor" alt="clj-js-join" height="18">
+
 <img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
 
 Javascript Sets Functional Programming with Basic Clojure data structure.   
@@ -10,7 +12,7 @@ You want to solve your problem in clojure way by using clojure core data structu
 
 
 ### Usage
-<a href="https://badge.fury.io/js/clj-js"><img src="https://badge.fury.io/js/clj-js.svg" alt="npm version" height="18"></a>  
+
 install or clone this repository   
 
 ```sh
