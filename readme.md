@@ -1,28 +1,30 @@
-## CLJ-JS
-![image info](./clj-js.png)
-Version: **v1.2.1**  
+# CLJ-JS - Clojure Core Libarary but in JS Land  
+<img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
+[![npm version](https://badge.fury.io/js/clj-js.svg)](https://badge.fury.io/js/clj-js)
 
-Javascript Sets Functional Programming with Basic Clojure data structure.      
-Clojure Core Libarary but in JS Land  
-
+Javascript Sets Functional Programming with Basic Clojure data structure.   
 
 ### Problem 
 Struggle to find A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
 You want to solve your problem in clojure way by using clojure core data structue?  
 
 
-### Usage 
+### Usage
 install or clone this repository   
+
 ```sh
 npm install clj-js
 ```
-use in yyour code  
+
+use in your code  
 ```js  
 var {map, filter, thread, juxt, assocIn, updateIn} = require('clj-js');
 var _ = require('clj-js');
 // _.memoize 
 ```
+
 use individually  
+
 ```js  
 var {conj, take, keep} = require('cljs-js/src/array');
 var {assoc, update, zipmap} = require('cljs-js/src/object');
@@ -59,17 +61,16 @@ var player = {
   }
 };
 var playerUpdate = assocIn(player, ["player", "address", "country"], "Indonesia");
-
 ```
 
-### Help Improve 
+### Help Improve and Feedback 
 create issues, and Pull Request to improve, add or enhance implementation   
 
 
 #### Awesome Clojure in JS  
 - [js.Spec](https://github.com/prayerslayer/js.spec)
-
-
+- [datascript](github.com/tonsky/datascript)
+- [speculas](github.com/mrijk/speculaas)
 
 ### Status API
 **Plann Supported API**

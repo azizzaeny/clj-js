@@ -1,7 +1,7 @@
 {
   "name": "clj-js",
   "version": "1.2.1",
-  "description": "Javascript Sets functional programming with basic clojure data structure",
+  "description": "Javascript Sets functional programming with basic clojure data structure, functional programming utility",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,14 +23,16 @@
     "utils",
     "map",
     "filter",
+    "reduce",
     "assoc",
     "thread",
     "atom",
-    "data strucutre",
+    "data-strucutre",
     "immutable",
-    "data trasnformation",
-    "designing with data",
-    "data"
+    "data-trasnformation",
+    "design-with-data",
+    "transducer",
+    "state"
   ],
   "author": "azizzaeny <https://github.com/azizzaeny> (https://github.com/azizzaeny)",
   "license": "ISC",
