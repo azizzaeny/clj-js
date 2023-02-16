@@ -1,7 +1,8 @@
-# CLJ-JS  -- Clojure Core Libarary but in JS Land  
-<img src="https://badge.fury.io/js/clj-js.svg" alt="npm version" height="20" style="display:inline-block;"/>
-<img src="https://img.shields.io/badge/clj-js-green?style=for-the-badge&logo=appveyor" alt="clj-js-join" height="20" style="display:inline-block;"/>
-<img src="https://img.shields.io/bundlephobia/minzip/clj-js?style=for-the-badge" alt="clj-js-join" height="20" style="display:inline-block;"/>
+# CLJ-JS - Clojure Core Libarary but in JS Land  
+
+<img src="https://badge.fury.io/js/clj-js.svg" alt="npm version" height="20" style="display:inline-block;">
+<img src="https://img.shields.io/badge/clj-js-green?style=for-the-badge&logo=appveyor" alt="clj-js-join" height="20" style="display:inline-block;">
+<img src="https://img.shields.io/bundlephobia/minzip/clj-js?style=for-the-badge" alt="clj-js-join" height="20" style="display:inline-block;">
 
 
 <img src="./clj-js.png" align="right" alt="clj-js" height="150px" style="border: none; float: right;">
