@@ -1,6 +1,6 @@
 {
   "name": "clj-js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Javascript Sets functional programming with basic clojure data structure",
   "main": "index.js",
   "scripts": {
@@ -11,11 +11,26 @@
     "url": "git+https://github.com/azizzaeny/clj-js.git"
   },
   "keywords": [
+    "fp",
     "functional",
-    "functional",
-    "programming",
+    "functional programming",
     "clj",
-    "clojure"
+    "clojure",
+    "cljs",
+    "clojurescript",
+    "util",
+    "utility",
+    "utils",
+    "map",
+    "filter",
+    "assoc",
+    "thread",
+    "atom",
+    "data strucutre",
+    "immutable",
+    "data trasnformation",
+    "designing with data",
+    "data"
   ],
   "author": "azizzaeny <https://github.com/azizzaeny> (https://github.com/azizzaeny)",
   "license": "ISC",

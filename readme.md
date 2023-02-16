@@ -1,14 +1,14 @@
 ## CLJ-JS
 ![image info](./clj-js.png)
+Version: **v1.2.1**  
 
 Javascript Sets Functional Programming with Basic Clojure data structure.      
 Clojure Core Libarary but in JS Land  
 
-clj-js Version: **v1.2.0**  
 
-### Yet another Problem to Solve 
-- Struggle Finding A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
-- You want to Solving your problem in clojure way by using clojure core data structue?  
+### Problem 
+Struggle to find A good Functional Programming Library that implemeneted in Javascript language, but you want all the experience and luxury of doing functional programming in clojure? ,  
+You want to solve your problem in clojure way by using clojure core data structue?  
 
 
 ### Usage 
@@ -16,7 +16,7 @@ install or clone this repository
 ```sh
 npm install clj-js
 ```
-use in your code  
+use in yyour code  
 ```js  
 var {map, filter, thread, juxt, assocIn, updateIn} = require('clj-js');
 var _ = require('clj-js');
@@ -31,7 +31,7 @@ var {isIncludes, isArray, isIdentical} = require('cljs-js/src/check');
 var {max, mod, rem, add, incr, decr} = require('cljs-js/src/math');
 var {join, reMatches, capitalize} = require('cljs-js/src/string');
 ```
-for detailed functions arguments and usage you can take a look to `cljs.info` or take a look into repository source code   
+for more detailed usage you can take a look to `cljs.info` or take a look into repository [source code](github.com/azizzaeny/clj-js/)   
 
 ```js 
 conj([1, 2, 3], 4); // [1, 2, 3, 4]
@@ -61,15 +61,16 @@ var player = {
 var playerUpdate = assocIn(player, ["player", "address", "country"], "Indonesia");
 
 ```
+
 ### Help Improve 
 create issues, and Pull Request to improve, add or enhance implementation   
 
-### Setup development with node 
 
-```sh
-sudo docker run --rm -dit --name clj-js --network=host -v $(pwd):/work node:alpine /bin/sh
-sudo docker attach clj-js && cd /work && node
-```
+#### Awesome Clojure in JS  
+- [js.Spec](https://github.com/prayerslayer/js.spec)
+
+
+
 ### Status API
 **Plann Supported API**
 
@@ -262,9 +263,12 @@ sudo docker attach clj-js && cd /work && node
 // State
 ```
 
-#### Awesome Clojure in JS  
-- [js.Spec](https://github.com/prayerslayer/js.spec)
+### Setup development with node 
 
+```sh
+sudo docker run --rm -dit --name clj-js --network=host -v $(pwd):/work node:alpine /bin/sh
+sudo docker attach clj-js && cd /work && node
+```
 
 #### Notes
 - this is not re-implementation of clojurescript or cljs  
