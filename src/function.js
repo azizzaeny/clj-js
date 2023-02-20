@@ -169,6 +169,39 @@ function someThreadLast(input, ...forms) {
     return form in acc ? acc[form] : null;
   }, input);
 }
+function defMulti(dispatchFn) {
+  const methods = [];
+
+  function multiFn(...args) {
+    const dispatchValue = dispatchFn(...args);
+    const dispatchIndex = methods.findIndex(method => method.dispatchValue === dispatchValue);
+
+    if (dispatchIndex < 0) {
+      throw new Error(`No method defined for dispatch value: ${dispatchValue}`);
+    }
+
+    const dispatchFn = methods[dispatchIndex].methodFn;
+
+    return dispatchFn(...args);
+  }
+
+  return multiFn;
+}
+
+function defMethod(multiFn, dispatchValue, methodFn) {
+  multiFn.methods.push({ dispatchValue, methodFn });
+}
+
+/*
+const animalSound = defMulti(animal => animal.type);
+
+defMethod(animalSound, 'dog', () => 'bark');
+defMethod(animalSound, 'cat', () => 'meow');
+
+console.log(animalSound({ type: 'dog' })); // Output: bark
+console.log(animalSound({ type: 'cat' })); // Output: meow
+console.log(animalSound({ type: 'bird' })); // Output: Error: No method defined for dispatch value: bird
+*/
 
 module.exports = {
   apply,
@@ -189,5 +222,7 @@ module.exports = {
   condThread,
   condThreadLast,
   someThread,
-  someThreadLast
+  someThreadLast,  
+  defMulti,
+  defMethod
 }
