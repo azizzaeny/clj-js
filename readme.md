@@ -183,7 +183,9 @@ create issues, and Pull Request to improve, add or enhance implementation
   condThread,
   condThreadLast,
   someThread,
-  someThreadLast
+  someThreadLast,
+  defMulti,
+  defMethod
 }
 
 // Math
