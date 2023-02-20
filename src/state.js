@@ -1,24 +1,62 @@
-const atom = (initialValue) => {
-  let value = initialValue;
+function atom(val) {
+  let value = val;
+  let watchers = new Set();
+  let validator = undefined;
+
+  function deref() {
+    return value;
+  }
+
+  function reset(newVal) {
+    if (validator !== undefined) {
+      validator(newVal);
+    }
+    const oldVal = value;
+    value = newVal;
+    watchers.forEach((watcher) => watcher(newVal, oldVal));
+    return newVal;
+  }
+
+  function swap(fn, ...args) {
+    return reset(fn(value, ...args));
+  }
+
+  function compareAndSet(expectedVal, newVal) {
+    if (deref() === expectedVal) {
+      reset(newVal);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  function addWatch(watcherFn) {
+    watchers.add(watcherFn);
+  }
+
+  function removeWatch(watcherFn) {
+    watchers.delete(watcherFn);
+  }
+
+  function setValidator(validatorFn) {
+    validator = validatorFn;
+  }
+
+  function getValidator() {
+    return validator;
+  }
 
   return {
-    deref: () => value,
-    swap: (f, ...args) => (value = f(value, ...args)),
-    reset: (newValue) => (value = newValue),
-    compareAndSet: (oldValue, newValue) => {
-      if (value === oldValue) {
-        value = newValue;
-        return true;
-      }
-      return false;
-    },
-    watchers: [],
-    addWatch: (key, f) => atom.watchers.push([key, f]),
-    removeWatch: (key) => (atom.watchers = atom.watchers.filter(([k, f]) => k !== key)),
-    setValidator: (f) => (atom.validator = f),
-    getValidator: () => atom.validator,
+    deref,
+    reset,
+    swap,
+    compareAndSet,
+    addWatch,
+    removeWatch,
+    setValidator,
+    getValidator,
   };
-};
+}
 
 function deref(atom){
   return atom.deref();
