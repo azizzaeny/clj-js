@@ -1,6 +1,6 @@
 {
   "name": "clj-js",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Javascript Sets functional programming with basic clojure data structure, functional programming utility",
   "main": "index.js",
   "scripts": {
