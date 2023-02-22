@@ -2,86 +2,46 @@ const conj = (coll, item) => {
   return [...coll, item];
 };
 
-/*
-conj([1, 2, 3], 4); // [1, 2, 3, 4]
-*/
 const cons = (item, seq) => {
   return [item, ...seq];
 };
-/*
-cons(1, [2, 3, 4]); // [1, 2, 3, 4]
-*/
 
 const first = (seq) => {
   return seq[0];
 };
 
-/*
-first([1, 2, 3]); // 1
-*/
-
 const nth = (seq, n) => {
   return seq[n];
 };
-/*
-nth([1, 2, 3], 1); // 2
-*/
+
 const peek = (stack) => {
   return stack[stack.length - 1];
 };
-
-/*
-peek([1, 2, 3]); // 3
-*/
 
 const rest = (seq) => {
   return seq.slice(1);
 };
 
-/*
-rest([1, 2, 3]); // [2, 3]
-
-*/
 const pop = (stack) => {
   return stack.slice(0, -1);
 };
 
-/*
- pop([1, 2, 3]); // [1, 2]
-*/
-
-// disj
-const disj = (coll, key) => {
-  if (arguments.length === 2) {
+function disj(...args){
+  let [coll, key, ...rest] = args;
+  if (args.length === 2) {
     return coll.filter((item) => item !== key);
-  } else if (arguments.length === 1) {
+  } else if (args.length === 1) {
     return (key) => disj(coll, key);
   }
   throw new Error('disj function must be called with at least 1 argument');
 }
 
-/*
-const disj = (coll, key) => {
-  return coll.filter((item) => item !== key);
-};
-const disj = (set, key) => {
-  const result = new Set(set);
-  result.delete(key);
-  return result;
-};
-
- disj(["a", "b", "c"], "b"); // ["a", "c"]
-*/
-
 const ffirst = (coll) => {
   return first(coll[0]);
 };
 
-/*
-ffirst([[1, 2, 3], [4, 5, 6]]); // 1
-*/
 
-function find(coll, pred){
+function find(pred, coll){
   for (const item of coll) {
     if (pred(item)) {
       return item;
@@ -90,107 +50,91 @@ function find(coll, pred){
   return undefined;
 };
 
-/*
-find([1, 2, 3, 4], x => x % 2 === 0); // 2
-*/
 
-const map = (arr, fn) => {
-  if (arguments.length === 1) {
-    return fnHolder => map(arr, fnHolder)
+var map = (...args) => {
+  let [fn, arr] = args;
+  if (args.length === 1) {
+    return coll => map(fn, coll);
   }
-  return arr.map(fn)
+  return arr.map(fn);
 }
 
-/*
-const double = map((x) => x * 2);
-double([1, 2, 3]); // [2, 4, 6]
 
-const triple = map([1, 2, 3], (x) => x * 3);
-triple; // [3, 6, 9]
-*/
-
-const filter = (arr, predicate) => {
-  if (arguments.length === 1) {
-    return predicateHolder => filter(arr, predicateHolder)
+var filter = (...args) => {
+  let [predicate, arr] = args;
+  if (args.length === 1) {
+    return coll => filter(predicate, coll);
   }
-  return arr.filter(predicate)
+  return arr.filter(predicate);
 }
 
-/*
-const isEven = filter((x) => x % 2 === 0);
-isEven([1, 2, 3, 4, 5]); // [2, 4]
-
-const longWords = filter(["apple", "banana", "cherry"], (word) => word.length > 5);
-longWords; // ["banana", "cherry"]
-*/
-
-const reduce = (arr, reducer, initialValue) => {
-  if (arguments.length === 2) {
-    return initialValueHolder => reduce(arr, reducer, initialValueHolder)
+var reduce = (...args) => {
+  let [reducer, initialValue, arr] = args;
+  if(args.length === 1){
+    return coll => reduce(reducer, null, coll);
+  }
+  if (args.length === 2) {
+    return coll => reduce(reducer, initialValueHolder, coll)
   }
   return arr.reduce(reducer, initialValue)
 }
 
-/*
-const sum = reduce((acc, x) => acc + x);
-sum([1, 2, 3, 4, 5]); // 15
-
-const product = reduce([1, 2, 3, 4, 5], (acc, x) => acc * x);
-product; // 120
-*/
-
-// Concatenates two or more arrays
-// concat
-const concat = (arr1, arr2) => {
-  if (arguments.length === 1) {
+var concat = (...args) => {
+  let [arr1, arr2] = args;
+  if (args.length === 1) {
     return arr2Holder => concat(arr1, arr2Holder)
   }
   return arr1.concat(arr2)
 }
 
 // mapcat
-const mapcat = (arr, fn) => {
-  if (arguments.length === 1) {
-    return fnHolder => mapcat(arr, fnHolder)
+var mapcat = (...args) => {
+  let [fn, arr]= args;
+  if (args.length === 1) {
+    return coll => mapcat(fn, coll);
   }
   return arr.map(fn).reduce((acc, val) => acc.concat(val), [])
 }
 
 // flatten
-const flatten = arr => {
+var flatten = arr => {
   const flat = [].concat(...arr)
   return flat.some(Array.isArray) ? flatten(flat) : flat
 }
 
 // distinct
-const distinct = arr => [...new Set(arr)]
+var distinct = arr => [...new Set(arr)]
 
 // remove
-const remove = (arr, predicate) => {
-  if (arguments.length === 1) {
-    return predicateHolder => remove(arr, predicateHolder)
+var remove = (...args) => {
+  let [predicate, arr] = args;
+  if (args.length === 1) {
+    return coll => remove(predicate, coll)
   }
   return arr.filter(val => !predicate(val))
 }
 
 // take-nth
-const takeNth = (arr, n) => {
-  if (arguments.length === 1) {
-    return nHolder => takeNth(arr, nHolder)
+
+var takeNth = (...args) => {
+  let [n, arr] = args;
+  if (args.length === 1) {
+    return coll => takeNth(n, coll)
   }
-  return arr.filter((_, i) => i % n === 0)
+  return arr.filter((_, i) => i % n === 0);
 }
 
 // take
-const take = (arr, n) => {
-  if (arguments.length === 1) {
-    return nHolder => take(arr, nHolder)
+var take = (...args) => {
+  let [n, arr] = args;
+  if (args.length === 1) {
+    return coll => take(n, coll);
   }
   return arr.slice(0, n)
 }
 
 // second
-const second = ([_, x]) => x
+var second = ([_, x]) => x
 
 // last
 const last = arr => arr[arr.length - 1]
@@ -199,139 +143,75 @@ const last = arr => arr[arr.length - 1]
 const next = ([_, ...rest]) => rest
 
 // nfirst
-const nfirst = (arr, n = 1) => arr.slice(n)
+const nfirst = (n = 1, arr) => arr.slice(n)
 
 // nnext
-const nnext = (arr, n = 1) => arr.slice(-n)
+const nnext = (n = 1, arr) => arr.slice(-n)
 
 // fnext
-const fnext = (arr, fn) => fn(...next(arr))
+const fnext = (fn, arr) => fn(...next(arr))
 
 // take-last
-const takeLast = (arr, n) => arr.slice(-n)
+const takeLast = (n, arr) => arr.slice(-n)
 
 // take-while
-const takeWhile = (arr, predicate) => {
-  if (arguments.length === 1) {
-    return predicateHolder => takeWhile(arr, predicateHolder)
+
+const takeWhile = (...args) => {
+  let [predicate, arr] = args;
+  if (args.length === 1) {
+    return coll => takeWhile(predicate, coll)
   }
   const index = arr.findIndex(val => !predicate(val))
   return index === -1 ? arr : arr.slice(0, index)
 }
 
 // drop
-const drop = (arr, n) => arr.slice(n)
+const drop = (n, arr) => arr.slice(n)
 
 // drop-last
-const dropLast = (arr, n = 1) => arr.slice(0, -n)
+const dropLast = (arr) => arr.slice(0, -1)
 
 // drop-first
-const dropFirst = (arr, n = 1) => arr.slice(n)
+const dropFirst = (arr) => arr.slice(1)
 
 // nthrest
-const nthrest = (arr, n) => {
-  if (arguments.length === 1) {
-    return nHolder => nthrest(arr, nHolder)
+const nthrest = (...args) => {
+  let [n, arr] = args;
+  if (args.length === 1) {
+    return coll => nthrest(n, coll)
   }
   return arr.filter((_, i) => i >= n)
 }
 
-/*
-// Concatenates two or more arrays
-const concat = (...arrays) => [].concat(...arrays);
+const sort = (...args) => {
+  let [arr, comparator = (a, b) => a - b] = args;
+  return args.length === 1 ? [...arr].sort() : [...arr].sort(comparator);
+}
 
-// Applies a function to each element of an array, and concatenates the results
-const mapcat = (fn, coll) => coll.flatMap(fn);
 
-// Flattens an array one level deep
-const flatten = (coll) => coll.flat();
-
-// Returns an array with duplicate elements removed
-const distinct = (coll) => [...new Set(coll)];
-
-// Removes all elements from an array that satisfy a predicate
-const remove = (pred, coll) => coll.filter((x) => !pred(x));
-
-// Returns every nth element of an array
-const takeNth = (n, coll) => coll.filter((x, i) => i % n === n - 1);
-
-// Returns the first n elements of an array
-const take = (n, coll) => coll.slice(0, n);
-
-// Returns the second element of an array
-const second = ([_, x, ...rest]) => x;
-
-// Returns the last element of an array
-const last = (coll) => coll[coll.length - 1];
-
-// Returns an array containing all but the first element of a collection
-const next = ([_, ...rest]) => rest;
-
-// Returns an array containing all but the first element of a collection
-const nfirst = ([x, ...rest]) => rest;
-
-// Returns an array containing all but the first two elements of a collection
-const nnext = ([_, x, ...rest]) => rest;
-
-// Returns an array containing all but the first element of a collection
-const fnext = (coll) => coll.slice(1);
-
-// Returns the last n elements of an array
-const takeLast = (n, coll) => coll.slice(Math.max(coll.length - n, 0));
-
-// Returns the longest prefix of an array for which a predicate is true
-const takeWhile = (pred, coll) => {
-  const index = coll.findIndex((x) => !pred(x));
-  return index === -1 ? coll : coll.slice(0, index);
-};
-
-// Returns an array containing all but the first n elements of a collection
-const drop = (n, coll) => coll.slice(n);
-
-// Returns an array containing all but the last n elements of a collection
-const dropLast = (n, coll) => coll.slice(0, Math.max(coll.length - n, 0));
-
-// Returns an array containing all but the first element of a collection
-const dropFirst = ([_, ...rest]) => rest;
-
-// Returns an array containing all but the first n elements of a collection
-const nthrest = (n, coll) => coll.slice(n);
-*/
-
-const sort = (arr, comparator = (a, b) => a - b) => arguments.length === 1 ? [...arr].sort() : [...arr].sort(comparator);
-
-/*
-const nums = [5, 2, 8, 1, 4];
-const sortedNums = sort(nums);
-console.log(sortedNums); // [1, 2, 4, 5, 8]
-*/
-
-const sortBy = (fn, arr) => {
-  if (arguments.length === 1) {
+const sortBy = (...args) => {
+  let [fn, arr] = args;
+  if (args.length === 1) {
     return arr => [...arr].sort((a, b) => fn(a) - fn(b));
   } else {
     return [...arr].sort((a, b) => fn(a) - fn(b));
   }
 };
 
-/*
-const strings = ["foo", "bar", "baz", "qux"];
-console.log(sortBy(identity, strings)); // ["bar", "baz", "foo", "qux"]
-*/
-
-const mapIndexed = (fn, arr) => {
-  if (arguments.length === 1) {
+const mapIndexed = (...args) => {
+  let [fn, arr] = args;
+  if (args.length === 1) {
     return arr => arr.map((val, idx) => fn(val, idx));
   } else {
     return arr.map((val, idx) => fn(val, idx));
   }
 };
-/*
-// map-indexed
-const numbers = [10, 20, 30];
-console.log(mapIndexed((index, value) => [index, value], numbers)); // [[0, 10], [1, 20], [2, 30]]
-*/
-const reverse = arr => arguments.length === 1 ? [...arr].reverse() : arr.reverse();
+
+
+const reverse = (...args) => {
+  let [arr] = args;
+  args.length === 1 ? [...arr].reverse() : arr.reverse();
+}
 
 /*
 const numbers = [1, 2, 3];
@@ -339,32 +219,22 @@ console.log(reverse(numbers)); // [3, 2, 1]
 */
 
 const interleave = (...arrays) => {
-  if (arguments.length === 1) {
+  if (arrays.length === 1) {
     return arr => arrays.reduce((acc, arr) => acc.flatMap((val, i) => [val, arr[i]]), arr.shift());
   } else {
     return arrays.reduce((acc, arr) => acc.flatMap((val, i) => [val, arr[i]]), arrays.shift());
   }
 };
 
-/*
-const a = [1, 2, 3];
-const b = ["a", "b", "c"];
-console.log(interleave(a, b)); // [1, "a", 2, "b", 3, "c"]
-*/
-
-const interpose = (sep, arr) => {
-  if (arguments.length === 1) {
+const interpose = (...args) => {
+  let [sep, arr] = args;
+  if (args.length === 1) {
     return arr => arr.flatMap((val, i) => i === arr.length - 1 ? val : [val, sep]);
   } else {
     return arr.flatMap((val, i) => i === arr.length - 1 ? val : [val, sep]);
   }
 };
 
-/*
-// interpose
-const numbers = [1, 2, 3];
-console.log(interpose(",", numbers)); // [1, ",", 2, ",", 3]
-*/
 
 const compare = (a, b) => {
   if (a < b) {
@@ -376,15 +246,12 @@ const compare = (a, b) => {
   }
 };
 
-/*
-// Usage
-console.log(compare(1, 2)); // -1
-console.log(compare(2, 1)); // 1
-console.log(compare(1, 1)); // 0
-*/
 
-const groupBy = (arr, fn) => {
-  if (!arr || !arr.length) return {};
+var groupBy = (...args) => {
+  let [fn, arr] = args;
+  if(args.length === 1){
+    return (coll) => groupBy(fn, coll);
+  }
   return arr.reduce((acc, curr) => {
     const key = fn(curr);
     if (!acc[key]) {
@@ -395,13 +262,24 @@ const groupBy = (arr, fn) => {
   }, {});
 };
 
-/*
-// Usage
-const groupByFirstLetter = groupBy(['apple', 'banana', 'cherry', 'date'], word => word[0]);
-console.log(groupByFirstLetter); // { a: [ 'apple' ], b: [ 'banana' ], c: [ 'cherry' ], d: [ 'date' ] }
-*/
+const partition = (...args) => {
+  let [size, arr] = args;
+  if(args.length === 1){
+    return (coll) => partition(size, coll);
+  }
+  const result = [];
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+};
 
-const partition = (arr, size) => {
+
+var partitionAll = (...args) => {
+  let [size, arr] = args;
+  if(args.length === 1){
+    return (coll) => partitionAll(size, coll);
+  }
   if (!arr || !arr.length) return [];
   const result = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -409,28 +287,15 @@ const partition = (arr, size) => {
   }
   return result;
 };
-/*
-// Usage
-console.log(partition([1, 2, 3, 4, 5], 2)); // [[1, 2], [3, 4], [5]]
-console.log(partition([1, 2, 3, 4, 5], 3)); // [[1, 2, 3], [4, 5]]
-*/
 
-const partitionAll = (arr, size) => {
-  if (!arr || !arr.length) return [];
-  const result = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
-};
-/*
-// Usage
-console.log(partitionAll([1, 2, 3, 4, 5], 2)); // [[1, 2], [3, 4], [5]]
-console.log(partitionAll([1, 2, 3, 4, 5], 3)); // [[1, 2, 3], [4, 5]]
-*/
 
 // partition-by
-const partitionBy = (fn, coll) => {
+
+const partitionBy = (...args) => {
+  let [fn, coll] = args;
+  if(args.length === 1){
+    return (coll) => partitionBy(fn, coll);
+  }
   const result = [];
   let group = [];
   let prevValue;
@@ -496,6 +361,7 @@ const whenFirst = (pred, coll, fn) => {
     }
   }
 };
+
 function vec(coll) {
   if (!coll) {
     return [];
@@ -512,14 +378,6 @@ function vec(coll) {
   return Object.values(coll);
 }
 
-/*
- vec([1, 2, 3]); // => [1, 2, 3]
-vec("abc"); // => ["a", "b", "c"]
-vec(new Set(['a', 'b', 'c'])); // => ['a', 'b', 'c']
-vec(new Map([['a', 1], ['b', 2]])); // => [['a', 1], ['b', 2]]
-vec(new Array(3).fill().map((_, i) => i)); // => [0, 1, 2]
-*/
-
 function subvec(coll, start, end) {
   if (!end) {
     end = coll.length;
@@ -530,10 +388,6 @@ function subvec(coll, start, end) {
   return coll.slice(start, end);
 }
 
-/*
- subvec([0, 1, 2, 3, 4], 2); // => [2, 3, 4]
- subvec([0, 1, 2, 3, 4], 2, 4); // => [2, 3]
-*/
 
 // repeat implementation
 const repeat = (n, value) => {
@@ -543,10 +397,6 @@ const repeat = (n, value) => {
   }
   return result;
 };
-/*
- const arr = repeat(5, 'foo');
- console.log(arr); // ["foo", "foo", "foo", "foo", "foo"]
-*/
 
 // range implementation
 const range = (start, end, step = 1) => {
@@ -560,11 +410,6 @@ const range = (start, end, step = 1) => {
   }
   return result;
 };
-
-/*
- const arr = range(2, 8, 2);
- console.log(arr); // [2, 4, 6]
-*/
 
 function keep(pred, coll) {
   return coll.reduce((acc, curr) => {
@@ -587,43 +432,28 @@ function keepIndexed(pred, coll) {
   }, []);
 }
 
-/*
-const coll = [1, 2, 3, 4, 5, 6];
-const isOdd = n => (n % 2 === 1 ? n : null);
-const squared = n => n * n;
-
-const result1 = keep(isOdd, coll); // [1, 3, 5]
-const result2 = keep(squared, result1); // [1, 9, 25]
-
-const result3 = keepIndexed((idx, n) => (idx % 2 === 0 ? n : null), coll); // [1, 3, 5]
-const result4 = keepIndexed(squared, result3); // [1, 9, 25]
-
-*/
-
 function frequencies(coll) {
   const freqMap = new Map();
   for (const el of coll) {
     freqMap.set(el, (freqMap.get(el) || 0) + 1);
   }
-  return freqMap;
+  return Object.fromEntries(freqMap);
 }
-/*
- (frequencies ["apple" "banana" "apple" "cherry"]) ; returns {"apple" 2, "banana" 1, "cherry" 1}
-*/
+
 function count(coll) {
   return coll.length;
 }
 
 function union(set1, set2) {
-  return new Set([...set1, ...set2]);
+  return Array.from(new Set([...set1, ...set2]));
 }
 
-function difference(set1, set2) {
-  return new Set([...set1].filter(x => !set2.has(x)));
+function difference(arr1, arr2) {
+  return arr1.filter((x) => !arr2.includes(x));
 }
 
-function intersection(set1, set2) {
-  return new Set([...set1].filter(x => set2.has(x)));
+function intersection(arr1, arr2) {
+  return arr1.filter((x) => arr2.includes(x));
 }
 
 module.exports ={  
