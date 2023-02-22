@@ -297,5 +297,8 @@ sudo docker attach clj-js && cd /work && node
 
 #### Todo
 - Make all arguments arity check, check the length input arguments  
-- support for future?, inst-ms, make-array, merge, pr-str, prn, read-line, uuid?
+- support for make-array, merge, uuid?, short-string?, long?, double?
 - support transducers
+
+#### Changes
+- arity check on array operation, test all array operation
