@@ -156,3 +156,73 @@ difference([1,2,4,5,6], [4,5])
 
 intersection([1,2,3], [2])
 
+var player = { name: "aziz", "foot": "R"}
+assoc(player, "foot", "L");
+dissoc(player, "foot")
+
+assoc(player)("foot","Left")
+
+assoc(player)("foot")
+assoc(player, "foot")('Foo')
+
+var player = {
+  player: {
+    name: "aziz",
+    address: {
+      city: "Jakarta",
+      state: "JKT"
+    }
+  }
+};
+
+assocIn(player, ["player", "address", "country"], "Indonesia");
+
+updateIn(player, ["player", "address", "city"], (city) => "City "+ city)
+update(player, "name", (name) => " Zaeny");
+
+const cart = {
+  items: [
+    { id: 1, name: 'Product 1', price: 10, quantity: 2 },
+    { id: 2, name: 'Product 2', price: 20, quantity: 1 },
+    { id: 3, name: 'Product 3', price: 30, quantity: 3 },
+  ],
+  shippingAddress: {
+    name: 'John Doe',
+    address1: '123 Main St',
+    address2: '',
+    city: 'Anytown',
+    state: 'CA',
+    zip: '12345',
+    country: 'US',
+  },
+  paymentMethod: 'credit-card',
+};
+
+updateIn(cart, ["shippingAddress", "country"], (c) => "code "+ c)
+// >>
+
+selectKeys({ a: 1, b: 2, c: 3 }, ["a", "c"]); // { a: 1, c: 3 }
+var person = { name: "John", age: 30, city: "New York" };
+renameKeys(person, { name: "full_name", city: "location" });
+
+mergeWith((a, b) => a + b, { a: 1, b: 2 }, { b: 3, c: 4 }, { c: 5, d: 6 });
+
+getIn({ a: { b: { c: 1 } } }, ['a', 'b', 'c']); // 1
+
+get({ a: 1, b: 2 }, "a"); // 1
+keys({ a: 1, b: 2 }); // ['a', 'b']
+vals({ a: 1, b: 2 }); // [1, 2]
+
+zipmap(['a', 'b', 'c'], [1, 2, 3]); // => {a: 1, b: 2, c: 3}
+
+
+function sum(a, b) {
+  return a + b;
+}
+
+const map1 = { a: 1, b: 2 };
+const map2 = { a: 3, c: 4 };
+const map3 = { b: 5, c: 6 };
+const merged = mergeWith(sum, map1, map2, map3);
+console.log(merged);
+// Output: { a: 4, b: 7, c: 10 }
